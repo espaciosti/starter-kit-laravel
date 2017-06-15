@@ -1,4 +1,4 @@
-#Desarrollos Especiales Espacios de México
+# Desarrollos Especiales Espacios de México
 
 ## Objetivo
 Contar con un punto de partida para el inicio de proyectos de desarrollo web usando el framework de PHP Laravel 5.4, contando con un kit de inicio que permita tener funcionalidades estándar en este tipo de proyectos
@@ -29,4 +29,10 @@ Seguir checklist
      
      
  
- 
+ * Crear una base de datos 
+
+    mysql -u usuario -p contraseña
+    CREATE DATABASE proyecto;
+    GRANT ALL PRIVILEGES ON proyecto.* TO 'app'@'localhost' IDENTIFIED BY 'contraseñaweb' WITH GRANT OPTION;
+    FLUSH PRIVILEGES;
+
