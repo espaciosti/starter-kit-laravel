@@ -69,3 +69,76 @@ Usar las credenciales
 * El proyecto usa el driver database para Sessions
 * El proyecto incluye Laravel Scout (Pendiente implementar)
 * El proyecto incluye Algolia Driver (Pendiente implementar)
+
+# Software Development (Espacios de México)
+
+## Objective
+Start point for web development using Laravel 5.4 framework , with some functional routines, ready to use , like Users CRUD, Profiles CRUD , Permissions and Middleware
+
+## Development Environment (Suggested)
+To use this code, you need to use the follow requirements:
+
+* PC or Mac 
+* PHP 5.6 or higher (Suggest PHP 7.1)
+* Database Server MySQL 5.5 or higher
+* Web Server (Apache 2.2 or NGINX)
+* Sequel Pro or MySQL Workbench for MySQL management
+* Text Editor (Suggest Sublime Text 2 or higher)
+* PHP composer
+* Homestead for Laravel , the best option
+
+## Project init
+
+* download from GitHub
+
+checklist
+
+      git clone https://github.com/espaciosti/starter-kit-laravel.git
+      
+     cd starter-kit-laravel
+     
+     cd proyecto_web
+     
+     cp .env_ejemplo .env
+     
+     composer install
+     
+     
+ 
+ * Create database 
+
+**mysql -u usuario -p contraseña**
+    
+**CREATE DATABASE proyecto;**
+
+GRANT ALL PRIVILEGES ON proyecto.* TO 'app'@'localhost' IDENTIFIED BY 'contraseñaweb' WITH GRANT OPTION;
+    
+**FLUSH PRIVILEGES;**
+    
+
+* Adjust .env file with database settings
+* Run **php artisan migrate**
+* Run **php artisan db:seed --class=PerfilTableSeeder**
+* Run **php artisan db:seed --class=PerfilMenuTableSeeder**
+* Run **php artisan db:seed --class=MenuTableSeeder**
+* Run **php artisan db:seed --class=UserTableSeeder**
+
+Once the project is initialized you can test the app by placing the project in a public folder of the web server or by using the integrated Laravel Web Server
+
+**php artisan serve**
+
+Go to **http://localhost:8000**
+
+Use this  
+
+* User : proyecto@mailinator.com
+* Password : Espacios1234
+
+## Important
+
+* This project use AWS S3 Bucket for file store, please solicite your API KEYs
+* This project implement Queue & Workers 
+* This project use database driver for store session
+* This project include Laravel Scout (Pending to do)
+* This project include Algolia Driver (Pending to do)
+
