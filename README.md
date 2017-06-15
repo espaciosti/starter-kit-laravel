@@ -25,14 +25,47 @@ Seguir checklist
       
      cd starter-kit-laravel
      
+     cd proyecto_web
+     
+     cp .env_ejemplo .env
+     
      composer install
      
      
  
  * Crear una base de datos 
 
-    mysql -u usuario -p contraseña
-    CREATE DATABASE proyecto;
-    GRANT ALL PRIVILEGES ON proyecto.* TO 'app'@'localhost' IDENTIFIED BY 'contraseñaweb' WITH GRANT OPTION;
-    FLUSH PRIVILEGES;
+**mysql -u usuario -p contraseña**
+    
+**CREATE DATABASE proyecto;**
 
+GRANT ALL PRIVILEGES ON proyecto.* TO 'app'@'localhost' IDENTIFIED BY 'contraseñaweb' WITH GRANT OPTION;
+    
+**FLUSH PRIVILEGES;**
+    
+
+* Modificar archivo .env con los datos de la base de datos
+* Ejecutar **php artisan migrate**
+* Ejecutar **php artisan db:seed --class=PerfilTableSeeder**
+* Ejecutar **php artisan db:seed --class=PerfilMenuTableSeeder**
+* Ejecutar **php artisan db:seed --class=MenuTableSeeder**
+* Ejecutar **php artisan db:seed --class=UserTableSeeder**
+
+Una vez inicializado el proyecto se puede probar la app colocando el proyecto en una carpeta publica del web server o usando el Web Server integrado de Laravel
+
+**php artisan serve**
+
+ingresar a **http://localhost:8000**
+
+Usar las credenciales 
+
+* Usuario : proyecto@mailinator.com
+* Contraseña : Espacios1234
+
+## Notas importantes
+
+* El proyecto utiliza AWS S3 para almacenar archivos, solicitar las API KEY
+* El proyecto usa Queue y Workers 
+* El proyecto usa el driver database para Sessions
+* El proyecto incluye Laravel Scout (Pendiente implementar)
+* El proyecto incluye Algolia Driver (Pendiente implementar)
