@@ -11,7 +11,7 @@ Para poder usar este código se recomienda contar con lo siguiente:
 * Servidor de Base de datos MySQL 5.5 o superior
 * Servidor Web (Puede ser apache 2.2 o NGINX)
 * Sequel Pro o MySQL Workbench para manejar MySQL
-* Editor de textos (Se recomienda Sublime Text 2 o superior)
+* Editor de textos o IDE de su preferencia
 * manejador de paquetes PHP composer
 * Homestead para Laravel es una excelente opción
 
@@ -83,7 +83,7 @@ To use this code, you need to use the follow requirements:
 * Database Server MySQL 5.5 or higher
 * Web Server (Apache 2.2 or NGINX)
 * Sequel Pro or MySQL Workbench for MySQL management
-* Text Editor (Suggest Sublime Text 2 or higher)
+* Text Editor or Preferred IDE
 * PHP composer
 * Homestead for Laravel , the best option
 
