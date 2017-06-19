@@ -265,4 +265,69 @@ class UsuarioController extends Controller
     {
         //
     }
+
+
+    public function settings()
+    {
+
+        $id=auth()->user()->id;
+
+
+        //Hack para enviar el menu que corresponde al profile del usuario autentificado
+        $lstMenus = Util::generateMenu(auth()->user()->perfil_id);
+
+        return view('catalogos.usuarios.settings')
+                ->with('elmenu',['elmenu'=>$lstMenus])
+                ->with('usuario',User::find($id));
+    }
+
+    public function updateUser(Request $request, $id)
+    {
+        $input = $request->all();
+
+        $edituser=User::find($id);
+        $edituser->name = $input['name'];
+            
+        if($input['password']=='')
+        {
+            //No modificar el campo
+        }else{
+            $edituser->password = bcrypt($input['password']);
+        }
+
+        $edituser->save();
+
+        //Por si cambia la foto de perfil
+        if($request->hasFile('photo'))
+            {
+
+                $rutaS3='users/photos';
+                Storage::disk('s3')->makeDirectory($rutaS3);
+
+                $id_user = auth()->user()->id;
+                $checksum=md5($edituser->email);
+                $filename      = 'original_'.date('dmY_His').'_'.$checksum.'.jpg';
+                $filenameMovil = 'thumb_'.date('dmY_His').'_'.$checksum.'.jpg';
+
+                $procesa = Image::make($request->photo)->encode('jpg', 95);
+                $procesa->save(storage_path().'/'.$filename);                
+                $procesa->resize(128, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+                
+                $procesa->save(storage_path().'/'.$filenameMovil);
+
+                Storage::disk('s3')->put($rutaS3.'/'.$filename,fopen(storage_path().'/'.$filename,'r+'),'public');
+                Storage::disk('s3')->put($rutaS3.'/'.$filenameMovil,fopen(storage_path().'/'.$filenameMovil,'r+'),'public');        
+
+                File::delete(storage_path().'/'.$filename);
+                File::delete(storage_path().'/'.$filenameMovil);  
+
+               $edituser->photo = Storage::disk('s3')->url($rutaS3.'/'.$filenameMovil);
+               $edituser->save();
+
+            } 
+
+        return redirect('settings')->with('msg','Usuario '.$input['name'].' editado correctamente')->with('type','success');;
+    }
 }

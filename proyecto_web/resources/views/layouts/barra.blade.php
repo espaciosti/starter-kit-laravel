@@ -29,7 +29,7 @@
                                         </span>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="javascript:void(0)"> Perfil</a></li>
+                                        <li><a href="{{url('settings')}}"> Perfil</a></li>
                                         <li class="divider"></li>
                                         <li><a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

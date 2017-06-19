@@ -31,3 +31,5 @@ Route::post('asignamenus','Web\PerfilController@asignaMenu');
 
 Route::get('datatable/usuarios','Web\UsuarioController@datausers');
 Route::resource('usuarios','Web\UsuarioController');
+Route::get('settings','Web\UsuarioController@settings');
+Route::put('updateuser/{id}','Web\UsuarioController@updateUser');
